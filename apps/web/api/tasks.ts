@@ -35,7 +35,7 @@ type RandomizedActivity = {
 }
 export async function randomizeTaskInput() {
   const categories = Object.keys(TaskCategory);
-  const category = categories[Math.floor(Math.random() * categories.length)];
+  const category = categories[Math.floor(Math.random() * categories.length)] as TaskCategory;
   const { data } = await Axios.get<RandomizedActivity>(`http://www.boredapi.com/api/activity?type=${category}`);
   return {
     category,

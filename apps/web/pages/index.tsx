@@ -15,6 +15,8 @@ const Home: NextPage = () => {
   const [tasks, setTasks] = React.useState<Task[]>([]);
   const [editMap, setEditMap] = React.useState<Record<number, boolean>>({});
 
+  const [randomizing, setRandomizing] = React.useState(false);
+
   const callConfirmationModal = useModal<ConfirmationModalProps, boolean>(ConfirmationModal);
 
   React.useEffect(() => {
@@ -55,9 +57,11 @@ const Home: NextPage = () => {
   }, []);
 
   const randomize = React.useCallback(async () => {
+    setRandomizing(true);
     const { category, name } = await randomizeTaskInput();
     setCategory(category);
     setName(name);
+    setRandomizing(false);
   }, []);
 
   const editOrSaveTask = React.useCallback(async (task: Task) => {
@@ -156,8 +160,8 @@ const Home: NextPage = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-x-10 pt-2 w-full">
-              <button className="btn btn-outline" type="button" onClick={randomize}>Random</button>
-              <button className="btn btn-primary" type="submit">Submit</button>
+              <button className={`btn btn-outline ${randomizing ? 'loading' : ''}`} disabled={randomizing} type="button" onClick={randomize}>Random</button>
+              <button className="btn btn-primary" type="submit" disabled={randomizing}>Submit</button>
             </div>
           </form>
         </section>
