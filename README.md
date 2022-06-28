@@ -70,6 +70,10 @@ This project is a monorepo that uses [turborepo] under the hood, but familiarity
 
     Or if needed, run `pnpm dev` at each project directory
 
+    Servers can be reached at:
+    - Web: http://localhost:3000
+    - Api: http://localhost:3001
+
 ### Stack
 
 [NextJS][nextjs] for frontend. [NestJS][nestjs] for backend. [Prisma][prisma] for ORM. [MySQL][mysql] as database
