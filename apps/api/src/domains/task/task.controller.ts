@@ -25,12 +25,12 @@ export class TaskController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() data: Prisma.TaskUpdateInput) {
-    return this.taskDao.update(id, data);
+  update(@Param('id') id: string, @Body() data: Prisma.TaskUpdateInput) {
+    return this.taskDao.update(parseInt(id), data);
   }
 
-  @Delete('id')
-  delete(@Param('id') id: number) {
-    return this.taskDao.delete(id);
+  @Delete(':id')
+  delete(@Param('id') id: string) {
+    return this.taskDao.delete(parseInt(id));
   }
 }
