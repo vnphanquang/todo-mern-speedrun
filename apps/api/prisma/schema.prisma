@@ -10,3 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum TaskCategory {
+  education
+  recreational
+  social
+  diy
+  charity
+  cooking
+  relaxation
+  music
+  busywork
+}
+
+model Task {
+  id        Int           @id @default(autoincrement())
+  name      String        @default("")
+  category  TaskCategory?
+  completed Boolean       @default(false)
+}
